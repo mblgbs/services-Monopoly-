@@ -31,3 +31,11 @@ def test_monopoly_cards_shape() -> None:
     assert payload["items"]
     first = payload["items"][0]
     assert {"id", "provider", "title", "card_type", "amount_eur", "text"} <= set(first.keys())
+
+
+def test_airbnb_api(client):
+    response = client.get("/services?provider=airbnb")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) > 0
+    assert data[0]["provider"] == "airbnb"

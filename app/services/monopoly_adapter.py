@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from ..schemas import MonopolyCard, Provider, ServiceOffer
 
-BONUS_CATEGORIES = {"sante", "aide"}
+BONUS_CATEGORIES = {"sante", "aide", "logement"}  # Airbnb as bonus
 
 
 def to_card(offer: ServiceOffer) -> MonopolyCard:

@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-Provider = Literal["edf", "eau", "cpam", "box_tv"]
+Provider = Literal["edf", "eau", "cpam", "box_tv", "airbnb"]
 
 
 class ServiceOffer(BaseModel):

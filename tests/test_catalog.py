@@ -19,3 +19,10 @@ def test_get_offer_not_found() -> None:
         assert True
     else:
         raise AssertionError("Expected CatalogNotFoundError")
+
+
+def test_airbnb_provider():
+    catalog = CatalogService()
+    airbnb_offers = catalog.list_offers(provider="airbnb")
+    assert len(airbnb_offers) > 0
+    assert airbnb_offers[0].provider == "airbnb"

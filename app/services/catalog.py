@@ -6,7 +6,7 @@ from pathlib import Path
 from ..schemas import Provider, ServiceOffer
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-PROVIDERS: tuple[Provider, ...] = ("edf", "eau", "cpam", "box_tv")
+PROVIDERS: tuple[Provider, ...] = ("edf", "eau", "cpam", "box_tv", "airbnb")
 
 
 class CatalogNotFoundError(Exception):
