@@ -1,0 +1,16 @@
+[
+  {
+    "id": "box-start",
+    "name": "Box Start",
+    "category": "telecom",
+    "monthly_price_eur": 29.99,
+    "description": "Internet fibre jusqu'a 500 Mb/s."
+  },
+  {
+    "id": "box-tv-max",
+    "name": "Box TV Max",
+    "category": "telecom",
+    "monthly_price_eur": 49.99,
+    "description": "Internet fibre plus bouquet TV et replay."
+  }
+]

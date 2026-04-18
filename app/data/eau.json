@@ -1,0 +1,16 @@
+[
+  {
+    "id": "eau-ville",
+    "name": "Eau Ville Standard",
+    "category": "eau",
+    "monthly_price_eur": 28.0,
+    "description": "Abonnement eau potable pour residence principale."
+  },
+  {
+    "id": "eau-famille",
+    "name": "Eau Famille",
+    "category": "eau",
+    "monthly_price_eur": 35.0,
+    "description": "Forfait eau adapte aux foyers de 4 personnes et plus."
+  }
+]

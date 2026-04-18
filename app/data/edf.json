@@ -1,0 +1,16 @@
+[
+  {
+    "id": "edf-base",
+    "name": "EDF Tarif Base",
+    "category": "energie",
+    "monthly_price_eur": 72.5,
+    "description": "Offre electricite standard pour logement principal."
+  },
+  {
+    "id": "edf-vert",
+    "name": "EDF Vert",
+    "category": "energie",
+    "monthly_price_eur": 79.9,
+    "description": "Offre electricite d'origine renouvelable."
+  }
+]

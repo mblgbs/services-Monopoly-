@@ -1,0 +1,1 @@
+"""Services Monopoly API package."""

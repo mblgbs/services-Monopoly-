@@ -1,0 +1,16 @@
+[
+  {
+    "id": "cpam-remboursement-standard",
+    "name": "Remboursement soins courants",
+    "category": "sante",
+    "monthly_price_eur": 30.0,
+    "description": "Simulation du remboursement mensuel moyen des soins courants."
+  },
+  {
+    "id": "cpam-aide-prevention",
+    "name": "Aide prevention",
+    "category": "aide",
+    "monthly_price_eur": 18.0,
+    "description": "Aide preventive fictive pour vaccins et depistages."
+  }
+]
