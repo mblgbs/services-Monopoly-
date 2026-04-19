@@ -5,6 +5,29 @@ from app.main import app
 client = TestClient(app)
 
 
+def test_ecosystem() -> None:
+    response = client.get("/ecosystem")
+    assert response.status_code == 200
+    payload = response.json()
+    assert "services" in payload
+    services = payload["services"]
+    assert len(services) == 9
+    ids = {s["id"] for s in services}
+    assert "franceconnect" in ids
+    assert "save_service" in ids
+    assert all(
+        {"id", "name", "role", "base_url", "docs_hint"} <= set(s.keys()) for s in services
+    )
+
+
+def test_ecosystem_env_override(monkeypatch) -> None:
+    monkeypatch.setenv("SNCF_CONNECT_BASE_URL", "http://custom-sncf:8005")
+    response = client.get("/ecosystem")
+    assert response.status_code == 200
+    sncf = next(s for s in response.json()["services"] if s["id"] == "sncf_connect")
+    assert sncf["base_url"] == "http://custom-sncf:8005"
+
+
 def test_health() -> None:
     response = client.get("/health")
     assert response.status_code == 200
@@ -33,9 +56,9 @@ def test_monopoly_cards_shape() -> None:
     assert {"id", "provider", "title", "card_type", "amount_eur", "text"} <= set(first.keys())
 
 
-def test_airbnb_api(client):
-    response = client.get("/services?provider=airbnb")
+def test_airbnb_api() -> None:
+    response = client.get("/services", params={"provider": "airbnb"})
     assert response.status_code == 200
     data = response.json()
-    assert len(data) > 0
-    assert data[0]["provider"] == "airbnb"
+    assert len(data["items"]) == 2
+    assert data["items"][0]["provider"] == "airbnb"

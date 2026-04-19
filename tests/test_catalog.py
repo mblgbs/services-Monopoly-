@@ -3,7 +3,7 @@ from app.services.catalog import CatalogNotFoundError, get_offer, list_offers
 
 def test_list_offers_all_providers() -> None:
     items = list_offers()
-    assert len(items) == 8
+    assert len(items) == 10
 
 
 def test_list_offers_by_provider() -> None:
@@ -21,8 +21,7 @@ def test_get_offer_not_found() -> None:
         raise AssertionError("Expected CatalogNotFoundError")
 
 
-def test_airbnb_provider():
-    catalog = CatalogService()
-    airbnb_offers = catalog.list_offers(provider="airbnb")
-    assert len(airbnb_offers) > 0
+def test_airbnb_provider() -> None:
+    airbnb_offers = list_offers("airbnb")
+    assert len(airbnb_offers) == 2
     assert airbnb_offers[0].provider == "airbnb"

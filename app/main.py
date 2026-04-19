@@ -2,7 +2,15 @@ from __future__ import annotations
 
 from fastapi import FastAPI, HTTPException, status
 
-from .schemas import MonopolyCardList, Provider, ServiceOffer, ServiceOfferList
+from .ecosystem import build_ecosystem_entries
+from .schemas import (
+    EcosystemResponse,
+    EcosystemService,
+    MonopolyCardList,
+    Provider,
+    ServiceOffer,
+    ServiceOfferList,
+)
 from .services.catalog import CatalogNotFoundError, get_offer, list_offers
 from .services.monopoly_adapter import to_cards
 
@@ -12,6 +20,12 @@ app = FastAPI(title="Services Monopoly API")
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok", "service": "services-monopoly"}
+
+
+@app.get("/ecosystem", response_model=EcosystemResponse)
+def ecosystem() -> EcosystemResponse:
+    entries = build_ecosystem_entries()
+    return EcosystemResponse(services=[EcosystemService(**e) for e in entries])
 
 
 @app.get("/services", response_model=ServiceOfferList)

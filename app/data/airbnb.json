@@ -1,0 +1,16 @@
+[
+  {
+    "id": "airbnb-studio",
+    "name": "Sejour courte duree — studio",
+    "category": "logement",
+    "monthly_price_eur": 45.0,
+    "description": "Frais de service mock pour sejour type studio en ville."
+  },
+  {
+    "id": "airbnb-famille",
+    "name": "Hebergement famille",
+    "category": "logement",
+    "monthly_price_eur": 72.0,
+    "description": "Forfait mock pour logement famille (plusieurs chambres)."
+  }
+]

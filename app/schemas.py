@@ -31,3 +31,15 @@ class MonopolyCard(BaseModel):
 
 class MonopolyCardList(BaseModel):
     items: list[MonopolyCard]
+
+
+class EcosystemService(BaseModel):
+    id: str
+    name: str
+    role: str
+    base_url: str
+    docs_hint: str
+
+
+class EcosystemResponse(BaseModel):
+    services: list[EcosystemService]
