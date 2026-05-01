@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+
 from fastapi import FastAPI, HTTPException, status
 
 from .ecosystem import build_ecosystem_entries
@@ -7,14 +9,18 @@ from .schemas import (
     EcosystemResponse,
     EcosystemService,
     MonopolyCardList,
+    PaymentLinkRequest,
+    PaymentLinkResponse,
     Provider,
     ServiceOffer,
     ServiceOfferList,
 )
 from .services.catalog import CatalogNotFoundError, get_offer, list_offers
 from .services.monopoly_adapter import to_cards
+from .services.payments import PaymentProxyError, create_payment_link
 
 app = FastAPI(title="Services Monopoly API")
+logger = logging.getLogger(__name__)
 
 
 @app.get("/health")
@@ -50,3 +56,18 @@ def service_detail(provider: Provider, offer_id: str) -> ServiceOffer:
 def monopoly_cards(provider: Provider | None = None) -> MonopolyCardList:
     offers = list_offers(provider)
     return MonopolyCardList(items=to_cards(offers, provider))
+
+
+@app.post("/payments/link", response_model=PaymentLinkResponse)
+def payments_link(payload: PaymentLinkRequest) -> PaymentLinkResponse:
+    logger.info(
+        "payment_link_requested app=%s context=%s reference_id=%s",
+        payload.app,
+        payload.context,
+        payload.reference_id,
+    )
+    try:
+        url = create_payment_link(payload)
+    except PaymentProxyError as exc:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail=str(exc)) from exc
+    return PaymentLinkResponse(url=url)

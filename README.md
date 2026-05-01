@@ -33,6 +33,7 @@ L'API est disponible sur `http://127.0.0.1:8004`.
 - `GET /services/{provider}/{offer_id}`
 - `GET /monopoly/cards`
 - `GET /monopoly/cards?provider=cpam`
+- `POST /payments/link` â€” proxy central vers `stripe-Monopoly` pour creer un Payment Link
 
 ## Decouverte des services (`/ecosystem`)
 
@@ -53,6 +54,7 @@ curl http://127.0.0.1:8004/services
 curl http://127.0.0.1:8004/services/edf
 curl http://127.0.0.1:8004/monopoly/cards?provider=box_tv
 curl http://127.0.0.1:8004/ecosystem
+curl -X POST http://127.0.0.1:8004/payments/link -H "Content-Type: application/json" -d "{\"app\":\"airbnb\",\"context\":\"reservation\",\"reference_id\":\"resv_123\"}"
 ```
 
 ## Convention de ports locale (multi-services)

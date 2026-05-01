@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -43,3 +43,20 @@ class EcosystemService(BaseModel):
 
 class EcosystemResponse(BaseModel):
     services: list[EcosystemService]
+
+
+PaymentApp = Literal["airbnb", "web", "sncf_connect", "declaration", "services", "wallet"]
+PaymentContext = Literal["reservation", "transfer", "tax", "ticket", "generic", "topup"]
+
+
+class PaymentLinkRequest(BaseModel):
+    app: PaymentApp
+    context: PaymentContext
+    reference_id: str = Field(min_length=1, max_length=128)
+    metadata: dict[str, Any] | None = None
+    amount_hint_eur: float | None = Field(default=None, ge=0)
+    amount_hint_cents: int | None = Field(default=None, ge=0)
+
+
+class PaymentLinkResponse(BaseModel):
+    url: str

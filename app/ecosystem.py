@@ -25,12 +25,12 @@ def _services_monopoly_base_url() -> str:
 
 
 def build_ecosystem_entries() -> list[EcosystemServiceDict]:
-    """URLs documentaires pour scripts et clients ; aucun appel réseau."""
+    """Documentation URLs for local scripts and clients; no outbound requests."""
     return [
         {
             "id": "franceconnect",
             "name": "FranceConnect Monopoly",
-            "role": "Mock OAuth / session (cookie)",
+            "role": "Mock OAuth / cookie session",
             "base_url": _base_url("FRANCECONNECT_BASE_URL", "http://127.0.0.1:8001"),
             "docs_hint": "FranceConnect-Monopoly/README.md",
         },
@@ -43,8 +43,8 @@ def build_ecosystem_entries() -> list[EcosystemServiceDict]:
         },
         {
             "id": "declaration",
-            "name": "Déclaration Monopoly",
-            "role": "API cartes Chance / Communauté",
+            "name": "Declaration Monopoly",
+            "role": "API cartes Chance / Communaute",
             "base_url": _base_url("DECLARATION_API_BASE_URL", "http://127.0.0.1:8003"),
             "docs_hint": "D-claration-Monopoly-/README.md",
         },
@@ -65,7 +65,7 @@ def build_ecosystem_entries() -> list[EcosystemServiceDict]:
         {
             "id": "sncf_connect",
             "name": "SNCF Connect Monopoly",
-            "role": "Mock OAuth + tokens Bearer / introspection",
+            "role": "Mock OAuth + bearer token introspection",
             "base_url": _base_url("SNCF_CONNECT_BASE_URL", "http://127.0.0.1:8005"),
             "docs_hint": "sncf-connect-Monopoly/README.md",
         },
@@ -79,15 +79,22 @@ def build_ecosystem_entries() -> list[EcosystemServiceDict]:
         {
             "id": "airbnb",
             "name": "Airbnb Monopoly",
-            "role": "MVP Next.js (listings / réservations)",
+            "role": "MVP Next.js (listings / reservations)",
             "base_url": _base_url("AIRBNB_MONOPOLY_BASE_URL", "http://127.0.0.1:3001"),
             "docs_hint": "airbnb-monopoly-/README.md",
         },
         {
+            "id": "wallet",
+            "name": "Pay Wallet Monopoly",
+            "role": "Wallet API (FranceConnect sync, top-up, P2P)",
+            "base_url": _base_url("PAY_WALLET_BASE_URL", "http://127.0.0.1:8007"),
+            "docs_hint": "Pay-Monopoly-/README.md",
+        },
+        {
             "id": "save_service",
             "name": "Save service",
-            "role": "Stockage d'état partagé (optionnel)",
+            "role": "Shared state storage (optional)",
             "base_url": _base_url("SAVE_SERVICE_BASE_URL", "http://127.0.0.1:8010"),
-            "docs_hint": "voir variables SAVE_SERVICE_* dans Web / FranceConnect / Banque",
+            "docs_hint": "see SAVE_SERVICE_* variables in Web / FranceConnect / Banque",
         },
     ]
